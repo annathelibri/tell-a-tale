@@ -1,0 +1,42 @@
+Game#onStart
+Game#first
+    Phase#first
+===loop:stage===
+Phase#onStart
+Stage#onStart
+===loop:npcs===
+//begin npc batch
+===endl:npcs===
+===loop:pla
+//begin player action batch
+Stage#onEnd
+Phase#onEnd
+Stage#next -> Phase#next
+    Phase#next
+===endl:stage===
+Game#onEnd
+
+
+fun logic() {
+    TalePack.onStart()
+
+    curr = TalePack.firstStage()
+    if (curr is Phase) curr = Phase.firstStage()
+
+    while(curr != null) {
+        Phase.onStart()
+        Stage.onStart()
+        
+        while(npcs) {
+            NpcAction.
+        }
+
+        Stage.onEnd()
+        Phase.onEnd()
+
+        curr = Stage.nextStage() ?: Phase.nextStage()
+        if (curr is Phase) Phase.nextStage()
+    }
+
+    TalePack.onEnd()
+}
